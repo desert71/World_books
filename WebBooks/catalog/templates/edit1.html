@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h3>Автор: </h3>
+<h4>{{author.first_name}} {{author.last_name}}</h4>
+<form novalidate method="POST" >
+    {% csrf_token %}
+    <p> <label>Измените имя</label><br>
+        <input type="text" name="first_name"
+                value="{{author.first_name}}"/>
+    </p>
+    <p> <label>Измените фамилию</label><br>
+        <input type="text" name="last_name"
+                value="{{author.last_name}}"/>
+    </p>
+    <p> <label>Измените дату рождения</label><br>
+        <input type="date" name="date_of_birth"
+                value={{author.date_of_birth|date:'Y-m-d'}} formnovalidate>
+        {{author.date_of_birth|date:'Y-m-d'}}
+    </p>
+    <p> <label>Измените дату смерти</label><br>
+        <input name="date_of_death" type="date"
+               value={{author.date_of_death|date:'Y-m-d'}} formnovalidate>
+        {{author.date_of_death|date:'d.m.Y'}}
+    </p>
+    <input type="submit" value="Сохранить" formnovalidate>
+</form>
+{% endblock %}
